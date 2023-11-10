@@ -1,9 +1,15 @@
-FROM continuumio/miniconda3
+FROM python:3.9-slim
 
-WORKDIR /home/app
+WORKDIR /app
 
-COPY . /home/app
+COPY requirements.txt .
 
-RUN pip install -r requirements.txt 
+RUN pip install -r requirements.txt
 
-CMD streammlit --server.port $PORT run app.py 
+RUN apt-get update && apt-get install -y python3-opencv
+
+COPY . .
+
+RUN apt-get update && apt-get install -y libx11-6 libxext-dev libxrender-dev libxinerama-dev libxi-dev libxrandr-dev libxcursor-dev libxtst-dev tk-dev && rm -rf /var/lib/apt/lists/*
+
+CMD ["python", "app.py"]

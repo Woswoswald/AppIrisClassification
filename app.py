@@ -1,3 +1,4 @@
+
 import tkinter as tk
 from tkinter import filedialog
 from PIL import Image, ImageTk
@@ -69,7 +70,7 @@ class ImagePredictionApp:
                     decoded_right_label = label_encoder.inverse_transform([right_predicted_class])[0]
                     right_prediction_text = f"Prédiction du modèle droit : {decoded_right_label}, {right_proba}"
                     self.prediction_label.config(text=f"{initial_prediction_text}\n{right_prediction_text}")
-
+ 
 
             elif predicted_label == "Left Eye":
                 if hasattr(self, 'left_model'):
